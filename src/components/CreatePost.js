@@ -11,6 +11,15 @@ const CreatePost = () => {
   const [selectedGif, setSelectedGif] = useState("");
   const [error, setError] = useState("");
 
+  //Cleaning the selectedGif and the result array on closing the modal
+  useEffect(() => {
+    if (modalIsOpen === false) {
+      setSelectedGif("");
+      setResult([]);
+    }
+  }, [modalIsOpen]);
+
+  //Using UseEffect to trigger fetch request on every search hit on git Input
   useEffect(() => {
     let baseurl = APIUrls.gifFetch(gifSearch);
     if (gifSearch !== "")
@@ -24,6 +33,7 @@ const CreatePost = () => {
       }
   }, [gifSearch]);
 
+  //Handler functions for setting the state values for the component
   const handleGifSearch = (e) => {
     let inputValue = e.target.value;
     setResult([]);
@@ -34,6 +44,7 @@ const CreatePost = () => {
     setSecondModalOpen(false);
   };
 
+  //Setting the root as the location of the modals
   Modal.setAppElement("#root");
   return (
     <div className="create-post-container display-flex">

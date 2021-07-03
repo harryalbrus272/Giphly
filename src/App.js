@@ -3,7 +3,9 @@ function App() {
   return (
     <div className="App">
       <CreatePost />
-      {[0,1,2,3].map((item) => (<Posts key={item} />))}
+      {[0, 1, 2, 3].map((item) => (
+        <Posts key={item} />
+      ))}
     </div>
   );
 }
