@@ -7,6 +7,7 @@ const CreatePost = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [secondModalOpen, setSecondModalOpen] = useState(false);
   const [gifSearch, setGifSearch] = useState("");
+  const [loading, setLoading] = useState(false);
   const [result, setResult] = useState([]);
   const [selectedGif, setSelectedGif] = useState("");
   const [error, setError] = useState("");
@@ -24,8 +25,10 @@ const CreatePost = () => {
     let baseurl = APIUrls.gifFetch(gifSearch);
     if (gifSearch !== "")
       try {
+        setLoading(true);
         axios.get(baseurl).then((res) => {
           setResult(res.data.data);
+          setLoading(false);
         });
       } catch (error) {
         console.log(error);
@@ -136,8 +139,19 @@ const CreatePost = () => {
           </div>
           <div className="gif-display">
             <ul>
-              {result.length === 0 && <p>Search the gif</p>}
-              {result.length !== 0 &&
+              {loading && (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <i className="fas fa-spinner fa-pulse"></i>
+                </div>
+              )}
+              {!loading &&
+                result.length !== 0 &&
                 result.map((item, indx) => (
                   <li key={indx} onClick={(e) => handleClickOnGif(e)}>
                     <img
