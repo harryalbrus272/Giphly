@@ -14,6 +14,7 @@ const Posts = () => {
         error voluptatibus! Ratione voluptatibus consequuntur repudiandae,
         quidem vero sequi, aspernatur officiis exercitationem debitis nostrum id
         quos, et reiciendis enim laudantium quia.
+        <img height="200" width="400" src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80" alt="laptop" />
       </div>
       <div className="card-footer">
           <div className="left-card-footer display-flex"><i class="far fa-heart"></i> &nbsp; <h5>Like</h5></div>

@@ -17,7 +17,7 @@ code {
 .card {
   width: 550px;
   min-height: 150px;
-  box-shadow: 0 0 4px 1px gray;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 0.7rem;
   margin: 30px auto auto auto;
   padding: 5px;
@@ -27,7 +27,9 @@ code {
   display: flex;
 }
 .post-user-options {
-  text-align: center;
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
 }
 .card-body {
   margin: 10px 0;
@@ -48,4 +50,27 @@ code {
   width: 50%;
   align-items: center;
   justify-content: center;
+}
+
+/*Top post Css*/
+.create-post-container {
+  margin: 30px auto;
+  justify-content: center;
+}
+.input-box input {
+  height: 50px;
+  width: 400px;
+  outline: none;
+  border: none;
+  padding-left: 20px;
+  border-radius: 2rem 0 0 2rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.post-button button {
+  height: 53px;
+  background: linear-gradient(50deg, #3C8DAD, #125D98);
+  border-radius: 0 0.35rem 0.35rem 0 ;
+  outline: none;
+  border: none;
+  color: white;
 }
