@@ -54,10 +54,10 @@ const CreatePost = () => {
             <i className="fas fa-pencil-alt"></i> &nbsp; Create Post
           </button>
           <button>
-            <i class="far fa-image"></i> &nbsp; Photo/Video Album
+            <i className="far fa-image"></i> &nbsp; Photo/Video Album
           </button>
           <button>
-            <i class="fas fa-video"></i> &nbsp; Live Video
+            <i className="fas fa-video"></i> &nbsp; Live Video
           </button>
         </li>
       </ul>
@@ -75,10 +75,10 @@ const CreatePost = () => {
                 <i className="fas fa-pencil-alt"></i> &nbsp; Create Post
               </button>
               <button>
-                <i class="far fa-image"></i> &nbsp; Photo/Video Album
+                <i className="far fa-image"></i> &nbsp; Photo/Video Album
               </button>
               <button>
-                <i class="fas fa-video"></i> &nbsp; Live Video
+                <i className="fas fa-video"></i> &nbsp; Live Video
               </button>
             </li>
           </ul>
