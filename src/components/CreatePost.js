@@ -6,11 +6,17 @@ import APIUrls from "../utils/urls";
 const CreatePost = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [secondModalOpen, setSecondModalOpen] = useState(false);
-  const [gifSearch, setGifSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  const [gifSearch, setGifSearch] = useState("");
   const [result, setResult] = useState([]);
   const [selectedGif, setSelectedGif] = useState("");
   const [error, setError] = useState("");
+  const [inputPost, setInputPost] = useState("");
+
+  //For this particular Problem, we will be sending the SRC OF THE IMAGE and THE VALUE of the INPUT field.
+  //Therefore, these will output of the RESULTANT JSON
+
+  const output = { inputPost, selectedGif };
 
   //Cleaning the selectedGif and the result array on closing the modal
   useEffect(() => {
@@ -103,6 +109,8 @@ const CreatePost = () => {
             name="post"
             id="post"
             placeholder="Create Post ....."
+            value={inputPost}
+            onChange={(e) => setInputPost(e.target.value)}
           />
           <div className="post-button">
             <button className="">Create Post!</button>
