@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
+import { customStyles, customStylesDropdown } from "../styles/modalstyles";
+import APIUrls from "../utils/urls";
 const CreatePost = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [secondModalOpen, setSecondModalOpen] = useState(false);
@@ -8,24 +10,9 @@ const CreatePost = () => {
   const [result, setResult] = useState([]);
   const [selectedGif, setSelectedGif] = useState("");
   const [error, setError] = useState("");
-  let baseurl =
-    "https://api.giphy.com/v1/gifs/search?api_key=c8JBlm1edLuhGu0SfBVDdVM0cnTJYHS7&limit=10&q=";
-  const customStyles = {
-    content: {
-      top: "28%",
-      left: "46%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
-    overlay: {
-      backgroundColor: "rgb(0,0,0,75%)",
-    },
-  };
 
   useEffect(() => {
-    baseurl = baseurl.concat(gifSearch);
+    let baseurl = APIUrls.gifFetch(gifSearch);
     if (gifSearch !== "")
       try {
         axios.get(baseurl).then((res) => {
@@ -33,6 +20,7 @@ const CreatePost = () => {
         });
       } catch (error) {
         console.log(error);
+        setError(error);
       }
   }, [gifSearch]);
 
@@ -42,22 +30,10 @@ const CreatePost = () => {
     setGifSearch(inputValue);
   };
   const handleClickOnGif = (e) => {
-    console.log(e.target.src);
+    setSelectedGif(e.target.src);
+    setSecondModalOpen(false);
   };
-  console.log({ gifSearch });
-  const customStylesDropdown = {
-    content: {
-      top: "66%",
-      left: "30%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
-    overlay: {
-      backgroundColor: "none",
-    },
-  };
+
   Modal.setAppElement("#root");
   return (
     <div className="create-post-container display-flex">
@@ -119,8 +95,8 @@ const CreatePost = () => {
           </div>
         </div>
         {selectedGif && (
-          <div className="gif-input">
-            <img src={selectedGif} alt="selectedgif" />
+          <div className="gif-selected">
+            <img src={selectedGif} alt="selectedgif" height="250" width="300" />
           </div>
         )}
         <div className="add-gif-block">
@@ -139,7 +115,7 @@ const CreatePost = () => {
         contentLabel="Example Modal"
       >
         <div className="gif-display-container">
-          <div className="gif-search">
+          <div className="gif-search display-flex">
             <input
               type="text"
               value={gifSearch}
@@ -149,15 +125,15 @@ const CreatePost = () => {
           </div>
           <div className="gif-display">
             <ul>
+              {result.length === 0 && <p>Search the gif</p>}
               {result.length !== 0 &&
                 result.map((item, indx) => (
-                  <li key={indx} onClick={(e) => setSelectedGif(e.target.src)}>
+                  <li key={indx} onClick={(e) => handleClickOnGif(e)}>
                     <img
-                      height="100"
-                      width="100"
+                      height="200"
+                      width="200"
                       src={item.images.downsized.url}
                       alt=""
-                      onClick={(e) => handleClickOnGif(e)}
                     />
                   </li>
                 ))}

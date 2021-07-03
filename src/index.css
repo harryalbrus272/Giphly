@@ -14,6 +14,9 @@ code {
 .display-flex {
   display: flex;
 }
+.App {
+  background-color: #f7f7f7;
+}
 .alert {
   padding: 10px;
   width: 100%;
@@ -40,6 +43,7 @@ code {
   border-radius: 0.7rem;
   margin: 30px auto auto auto;
   padding: 5px;
+  background-color: white;
 }
 .card-header {
   position: relative;
@@ -123,7 +127,7 @@ code {
 }
 .gif-display-container {
   height: 300px;
-  width: 150px;
+  width: 250px;
 }
 .gif-display {
   overflow: scroll;
@@ -151,5 +155,8 @@ code {
 }
 .gif-search input {
   border: 1px darkgray solid;
-  width: 150px;
+  width: 250px;
+}
+.gif-selected {
+  margin: auto;
 }
