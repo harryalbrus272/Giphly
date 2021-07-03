@@ -11,3 +11,41 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.display-flex {
+  display: flex;
+}
+.card {
+  width: 550px;
+  min-height: 150px;
+  box-shadow: 0 0 4px 1px gray;
+  border-radius: 0.7rem;
+  margin: 30px auto auto auto;
+  padding: 5px;
+}
+.card-header {
+  position: relative;
+  display: flex;
+}
+.post-user-options {
+  text-align: center;
+}
+.card-body {
+  margin: 10px 0;
+}
+.post-user-name {
+  width: 80%;
+  text-align: center;
+}
+.card-footer {
+  display: flex;
+  position: relative;
+  border-top: 1px black solid;
+}
+.left-card-footer {
+  border-right: 1px black solid;
+}
+.left-card-footer, .right-card-footer {
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+}
