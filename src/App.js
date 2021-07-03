@@ -3,7 +3,7 @@ function App() {
   return (
     <div className="App">
       <CreatePost />
-      <Posts />
+      {[0,1,2,3].map((item) => (<Posts key={item} />))}
     </div>
   );
 }

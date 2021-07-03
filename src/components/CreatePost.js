@@ -6,6 +6,8 @@ const CreatePost = () => {
   const [secondModalOpen, setSecondModalOpen] = useState(false);
   const [gifSearch, setGifSearch] = useState("");
   const [result, setResult] = useState([]);
+  const [selectedGif, setSelectedGif] = useState("");
+  const [error, setError] = useState("");
   let baseurl =
     "https://api.giphy.com/v1/gifs/search?api_key=c8JBlm1edLuhGu0SfBVDdVM0cnTJYHS7&limit=10&q=";
   const customStyles = {
@@ -24,10 +26,14 @@ const CreatePost = () => {
 
   useEffect(() => {
     baseurl = baseurl.concat(gifSearch);
-    if (gifSearch !== '')
-      axios.get(baseurl).then((res) => {
-        setResult(res.data.data);
-      }); 
+    if (gifSearch !== "")
+      try {
+        axios.get(baseurl).then((res) => {
+          setResult(res.data.data);
+        });
+      } catch (error) {
+        console.log(error);
+      }
   }, [gifSearch]);
 
   const handleGifSearch = (e) => {
@@ -36,8 +42,8 @@ const CreatePost = () => {
     setGifSearch(inputValue);
   };
   const handleClickOnGif = (e) => {
-      console.log(e.target.src);
-  }
+    console.log(e.target.src);
+  };
   console.log({ gifSearch });
   const customStylesDropdown = {
     content: {
@@ -112,6 +118,11 @@ const CreatePost = () => {
             <button className="">Create Post!</button>
           </div>
         </div>
+        {selectedGif && (
+          <div className="gif-input">
+            <img src={selectedGif} alt="selectedgif" />
+          </div>
+        )}
         <div className="add-gif-block">
           <button
             className="block-button"
@@ -134,18 +145,19 @@ const CreatePost = () => {
               value={gifSearch}
               onChange={(e) => handleGifSearch(e)}
             />
+            {error && <package className="error-dailog alert"></package>}
           </div>
           <div className="gif-display">
             <ul>
-              {result.length &&
+              {result.length !== 0 &&
                 result.map((item, indx) => (
-                  <li key={indx}>
+                  <li key={indx} onClick={(e) => setSelectedGif(e.target.src)}>
                     <img
                       height="100"
                       width="100"
-                      src={item.images.downsized_medium.url}
+                      src={item.images.downsized.url}
                       alt=""
-                      onClick={(e) => handleClickOnGif(e)} 
+                      onClick={(e) => handleClickOnGif(e)}
                     />
                   </li>
                 ))}
